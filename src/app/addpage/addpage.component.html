@@ -1,0 +1,229 @@
+<!-- <div id="addpage">
+  <div class="popup-title">Add Page</div>
+  <div class="form-field" [formGroup]="addPageForm">
+    <ion-input placeholder="Page Name" type="text" formControlName="pageName">
+      <ion-icon name="document-outline" color="secondary"></ion-icon>
+    </ion-input>
+    <div class="my-inp-error">
+      <ion-icon name="alert-circle-outline"></ion-icon> Page is required
+    </div>
+  </div>
+  <div class="btn">
+    <ion-button (click)="submit()">Save</ion-button>
+  </div>
+</div> -->
+<div id="addpage">
+  <ion-header translucent>
+    <ion-toolbar>
+      <ion-buttons slot="start" (click)="dismissModal()">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <div class="header-items">
+        <ng-container>
+          <ion-title>{{controlProperties.pagename}}</ion-title>
+          <!-- <h4 class="btn_txt" (click)="update()">UPDATE</h4> -->
+        </ng-container>
+      </div>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content fullscreen class="ion-padding">
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <!-- <div class="body">
+      <ng-container *ngIf="dataJson.length != 0">
+        <ion-card *ngFor="let data of dataJson; let i = index" [id]="data.cardid">
+          <div>
+            <ion-buttons slot="start" class="but-tool-icons"  (click)="presentPopover($event, data)">
+              <ion-button>
+                <ion-icon slot="icon-only" name="settings-outline"></ion-icon>
+              </ion-button>
+              <ion-button (click)="deleteComp(i)">
+                <ion-icon slot="icon-only" name="close"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </div>
+        </ion-card>
+      </ng-container>
+    </div>-->
+    <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+      <ion-fab-button color="primary">
+        <ion-icon md="caret-up" ios="chevron-up-circle-outline"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-list side="top">
+        <ion-fab-button color="light">
+          <ion-icon color="primary" name="bar-chart" (click)="addLayout('chart')"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button color="light">
+          <ion-icon color="primary" name="grid" (click)="addLayout('grid')"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button color="light">
+          <ion-icon color="primary" name="speedometer" (click)="addLayout('circulargauge')"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button color="light">
+          <ion-icon color="primary" name="timer" (click)="addLayout('bargauge')"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button color="light">
+          <ion-icon color="primary" name="thermometer" (click)="addLayout('lineargauge')"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button color="light">
+          <ion-icon color="primary" name="alert-circle" (click)="addLayout('indicator')"></ion-icon>
+        </ion-fab-button>
+      </ion-fab-list>
+    </ion-fab>
+    <ion-fab vertical="bottom" horizontal="start" slot="fixed" (click)="update()">
+      <ion-fab-button>
+        <ion-icon name="save-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+    <ng-container *ngIf="controlProperties?.pageproperties?.length == 0">
+      <div class="nodata_wrapper">
+        <img src="assets/nodata.svg" class="nodata_img">
+        <span>NO DATA FOUND</span>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="controlProperties?.pageproperties?.length != 0">
+      <div class="item" *ngFor="let data of controlProperties.pageproperties; let i = index">
+        <!--Chart-->
+        <ng-container *ngIf="data.type == 'chart'">
+          <dx-chart id="chart" [dataSource]="dataSource" [title]="data.data?data.data.title:'Title'">
+            <dxi-series argumentField="day" valueField="oranges" type="spline" name="Tag1"></dxi-series>
+            <dxo-legend verticalAlignment="top" horizontalAlignment="center">
+            </dxo-legend>
+            <dxo-tooltip [enabled]="true" [shared]="true">
+            </dxo-tooltip>
+            <dxi-value-axis name="value" position="left">
+              <dxo-grid [visible]="true"></dxo-grid>
+              <dxo-title [text]="data.data?data.data.valueAxis:'Value'"></dxo-title>
+            </dxi-value-axis>
+            <dxo-argument-axis [title]="data.data?data.data.arugumentAxis:'Argument'">
+            </dxo-argument-axis>
+            <dxo-export [enabled]="true"></dxo-export>
+            <dxo-animation easing="linear" [duration]="500" [maxPointCountSupported]="100"> </dxo-animation>
+          </dx-chart>
+          <div class="btn">
+            <ion-button size="small" (click)="openControlForm(data.id, i)" *ngIf="!data.data">Properties</ion-button>
+            <ion-button size="small" (click)="openControlForm(data.id, i)" *ngIf="data.data">Edit Properties
+            </ion-button>
+            <ion-button size="small" (click)="deleteControlConfirmForm(i)">Delete</ion-button>
+          </div>
+        </ng-container>
+
+
+        <!--Grid   [dataSource]="customers"   "['TagName', 'Value', 'TimeStamp', 'Description']"-->
+        <ng-container *ngIf="data.type == 'grid'">
+          <h1 class="table-tlt">{{data.data?data.data.title:'Title'}}</h1>
+          <dx-data-grid id="gridContainer" [columns]="data.data?data.data.displayfields:gridfields" [showBorders]="true"
+            [allowColumnResizing]="true">
+            <dxo-group-panel [visible]="true" [allowColumnDragging]="false"></dxo-group-panel>
+            <dxo-export [enabled]="true"></dxo-export>
+          </dx-data-grid>
+          <div class="btn">
+            <ion-button size="small" (click)="openGridControlForm(data.id, i)" *ngIf="!data.data">Properties
+            </ion-button>
+            <ion-button size="small" (click)="openGridControlForm(data.id, i)" *ngIf="data.data">Edit Properties
+            </ion-button>
+            <ion-button size="small" (click)="deleteControlConfirmForm(i)">Delete</ion-button>
+          </div>
+        </ng-container>
+
+        <!--Bar Gauge-->
+        <ng-container *ngIf="data.type == 'bargauge'">
+          <dx-bar-gauge id="gauge" [startValue]="data.data?data.data.startvalue:'1'"
+            [endValue]="data.data?data.data.endvalue:'100'" [values]="[47, 65, 84]">
+            <dxo-label [indent]="30">
+              <dxo-format type="fixedPoint" [precision]="1"></dxo-format>
+            </dxo-label>
+            <dxo-export [enabled]="true"></dxo-export>
+            <dxo-title [text]="data.data?data.data.title:'Title'">
+              <dxo-font [size]="28"></dxo-font>
+            </dxo-title>
+            <dxo-animation easing="linear" [duration]="500">
+            </dxo-animation>
+            <dxo-legend [visible]="true" verticalAlignment="bottom" horizontalAlignment="center">
+            </dxo-legend>
+          </dx-bar-gauge>
+          <div class="btn">
+            <ion-button size="small" (click)="openBargaugeControlForm(data.id, i)" *ngIf="!data.data">Properties
+            </ion-button>
+            <ion-button size="small" (click)="openBargaugeControlForm(data.id, i)" *ngIf="data.data">Edit Properties
+            </ion-button>
+            <ion-button size="small" (click)="deleteControlConfirmForm(i)">Delete</ion-button>
+          </div>
+        </ng-container>
+
+        <!--Circular Gauge-->
+        <ng-container *ngIf="data.type == 'circulargauge'">
+          <dx-circular-gauge id="circulargauge" [value]="105">
+            <dxo-scale [startValue]="data.data?data.data.startvalue:'1'" [endValue]="data.data?data.data.endvalue:'200'"
+              [tickInterval]="10">
+              <dxo-label [useRangeColors]="true"></dxo-label>
+            </dxo-scale>
+            <dxo-range-container palette="pastel">
+              <dxi-range [startValue]="50" [endValue]="90"></dxi-range>
+              <dxi-range [startValue]="90" [endValue]="130"></dxi-range>
+              <dxi-range [startValue]="130" [endValue]="150"></dxi-range>
+            </dxo-range-container>
+            <dxo-export [enabled]="true"></dxo-export>
+            <dxo-title [text]="data.data?data.data.title:'Title'">
+              <dxo-font [size]="28"></dxo-font>
+            </dxo-title>
+          </dx-circular-gauge>
+          <div class="btn">
+            <ion-button size="small" (click)="openCirculargaugeControlForm(data.id, i)" *ngIf="!data.data">Properties
+            </ion-button>
+            <ion-button size="small" (click)="openCirculargaugeControlForm(data.id, i)" *ngIf="data.data">Edit
+              Properties
+            </ion-button>
+            <ion-button size="small" (click)="deleteControlConfirmForm(i)">Delete</ion-button>
+          </div>
+        </ng-container>
+        <!--Linear Gauge-->
+        <ng-container *ngIf="data.type == 'lineargauge'">
+          <dx-linear-gauge id="lineargauge" [value]="430">
+            <dxo-scale [startValue]="data.data?data.data.startvalue:'1'" [endValue]="data.data?data.data.endvalue:'500'"
+              [tickInterval]="20" [minorTickInterval]="20">
+              <dxo-minor-tick [visible]="true"></dxo-minor-tick>
+            </dxo-scale>
+            <dxo-export [enabled]="true"></dxo-export>
+            <dxo-title [text]="data.data?data.data.title:'Title'">
+              <dxo-font [size]="28"></dxo-font>
+            </dxo-title>
+            <dxo-animation easing="linear" [duration]="500">
+            </dxo-animation>
+          </dx-linear-gauge>
+          <div class="btn">
+            <ion-button size="small" (click)="openLineargaugeControlForm(data.id, i)" *ngIf="!data.data">Properties
+            </ion-button>
+            <ion-button size="small" (click)="openLineargaugeControlForm(data.id, i)" *ngIf="data.data">Edit Properties
+            </ion-button>
+            <ion-button size="small" (click)="deleteControlConfirmForm(i)">Delete</ion-button>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="data.type == 'indicator'">
+          <h1 class="table-tlt">{{data.data?data.data.title:'Title'}}</h1>
+          <dx-data-grid id="gridContainer" [dataSource]="indicatorSource" [columns]="data.data?data.data.displayfields:indicatorfields" [showBorders]="true"
+            [allowColumnResizing]="true">
+            <dxi-column dataField="Alias Name"></dxi-column>
+            <dxi-column dataField="Tag Name"></dxi-column>
+            <dxi-column dataField="Condition" cellTemplate="cellTemplate"></dxi-column>
+            <div *dxTemplate="let data of 'cellTemplate'" class="light-indicator-wrapper">
+              <span class="light-indicator"></span>
+            </div>
+            <dxo-group-panel [visible]="true" [allowColumnDragging]="false"></dxo-group-panel>
+            <dxo-export [enabled]="true"></dxo-export>
+          </dx-data-grid>
+          <div class="btn">
+            <ion-button size="small" (click)="openIndicatorControlForm(data.id, i)" *ngIf="!data.data">Properties
+            </ion-button>
+            <ion-button size="small" (click)="openIndicatorControlForm(data.id, i)" *ngIf="data.data">Edit Properties
+            </ion-button>
+            <ion-button size="small" (click)="deleteControlConfirmForm(i)">Delete</ion-button>
+          </div>
+        </ng-container>
+      </div>
+    </ng-container>
+
+  </ion-content>
+</div>

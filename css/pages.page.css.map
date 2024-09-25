@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,OAAO,CAAC;EACJ,WAAW,EAAE,IAAI;CAIpB;;AALD,AAEI,OAFG,CAEH,WAAW,CAAC;EACR,MAAM,EAAE,IAAI;CACf;;AAGL,AACI,OADG,CACH,WAAW,CAAC;EACR,MAAM,EAAE,IAAI;CACf;;AAGL,AAAA,OAAO,CAAC;EACJ,WAAW,EAAE,IAAI;CACpB",
+    "sources": [
+        "../src/app/pages/pages.page.scss"
+    ],
+    "names": [],
+    "file": "pages.page.css"
+}

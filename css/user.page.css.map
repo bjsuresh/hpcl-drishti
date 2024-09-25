@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,WAAW,CAAC;EACR,YAAY,CAAA,QAAC;CAQhB;;AATD,AAEI,WAFO,CAEP,QAAQ,CAAC;EACL,UAAU,EAAE,OAAO;CAKtB;;AARL,AAIQ,WAJG,CAEP,QAAQ,CAEJ,QAAQ,CAAC;EACL,aAAa,EAAE,IAAI;EACnB,MAAM,EAAE,IAAI;CACf;;AAGT,AAAA,cAAc,CAAC;EACX,QAAQ,EAAE,QAAQ;EAClB,QAAQ,EAAE,MAAM;CACjB",
+    "sources": [
+        "../src/app/user/user.page.scss"
+    ],
+    "names": [],
+    "file": "user.page.css"
+}

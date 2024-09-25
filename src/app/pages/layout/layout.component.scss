@@ -1,0 +1,19 @@
+@import '../../../theme/variables.scss';
+ion-content {
+    --background: #f5f7f9;
+    ion-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 19px;
+        color: $my-primary-color;
+        border-radius: 11px;
+        .icon_card {
+            font-size: 36px;
+        }
+        h4 {
+            font-size: 18px;
+        }
+    }
+}

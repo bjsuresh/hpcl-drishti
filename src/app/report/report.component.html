@@ -1,0 +1,22 @@
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-list *ngIf="keys.length > 0">
+    <ng-container *ngFor="let key of keys">
+      <ion-item class="level1">
+        <ion-icon name="folder-outline" slot="start"></ion-icon>
+        <ion-label>{{reportData[key].ReportName}}</ion-label>
+      </ion-item>
+      <ng-container *ngFor="let childObj of reportData[key].child">
+          <ion-item button class="level3" (click)="reportDownload(childObj)">
+            <ion-icon name="newspaper-outline" slot="start"></ion-icon>
+            <ion-label>{{childObj.FileName}}.{{childObj.FileExtension}}</ion-label>
+          </ion-item>
+      </ng-container>
+    </ng-container>
+  </ion-list>
+  <ion-item *ngIf="keys.length === 0" class="no-data-message">
+    No reports data to display.
+  </ion-item>
+</ion-content>

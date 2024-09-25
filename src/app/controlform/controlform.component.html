@@ -1,0 +1,256 @@
+<div id="controlform">
+  <!-- <ion-header translucent>
+    <ion-toolbar>
+      <ion-title>Add Controls</ion-title>
+      <ion-buttons slot="end" (click)="dismissModal()">
+        <ion-button>Close</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header> -->
+  <ion-content fullscreen>
+    <div class="background">
+    </div>
+    <div class="heading">
+      <span>Chart Properties</span>
+      <span class="close" (click)="dismissModal()">Close</span>
+      <!-- <ion-icon name="close-circle-outline"></ion-icon> -->
+    </div>
+    <div class="form" [formGroup]="controlForm">
+      <div class="form-field">
+        <ion-input placeholder="Title" type="text" formControlName="title">
+        </ion-input>
+        <div class="my-inp-error"
+          *ngIf="controlForm.get('title').hasError('required') && controlForm.get('title').touched">
+          <ion-icon name="alert-circle-outline"></ion-icon> Title is required
+        </div>
+      </div>
+      <div class="form-field">
+        <ion-input placeholder="X Axis Title" type="text" formControlName="arugumentAxis">
+        </ion-input>
+        <div class="my-inp-error"
+          *ngIf="controlForm.get('arugumentAxis').hasError('required') && controlForm.get('arugumentAxis').touched">
+          <ion-icon name="alert-circle-outline"></ion-icon> X Axis Title is required
+        </div>
+      </div>
+      <div class="form-field">
+        <ion-input placeholder="Y Axis Title" type="text" formControlName="valueAxis">
+        </ion-input>
+        <div class="my-inp-error"
+          *ngIf="controlForm.get('valueAxis').hasError('required') && controlForm.get('valueAxis').touched">
+          <ion-icon name="alert-circle-outline"></ion-icon> Y Axis Title is required
+        </div>
+      </div>
+      <div class="form-field">
+        <ion-select placeholder="Select Chart Type" formControlName="chartType">
+          <ion-select-option value="spline">Spline</ion-select-option>
+          <ion-select-option value="line">Line</ion-select-option>
+          <ion-select-option value="bar">Bar</ion-select-option>
+        </ion-select>
+        <div class="my-inp-error"
+          *ngIf="controlForm.get('chartType').hasError('required') && controlForm.get('chartType').touched">
+          <ion-icon name="alert-circle-outline"></ion-icon> Chart Type is required
+        </div>
+      </div>
+      <div class="form-field">
+        <ion-select placeholder="Select Process For" formControlName="processFor">
+          <ion-select-option value="realtime">Real Time</ion-select-option>
+          <ion-select-option value="query">Historical</ion-select-option>
+        </ion-select>
+      </div>
+      <ng-container *ngIf="controlForm.get('showData')">
+        <div class="form-field">
+          <ion-select placeholder="Show Data" formControlName="showData">
+            <ion-select-option value="minutes">Minutes</ion-select-option>
+            <ion-select-option value="points">Points</ion-select-option>
+          </ion-select>
+          <div class="my-inp-error"
+            *ngIf="controlForm.get('showData').hasError('required') && controlForm.get('showData').touched">
+            <ion-icon name="alert-circle-outline"></ion-icon> Show Data is required
+          </div>
+        </div>
+        <div class="form-field">
+          <ion-input formControlName="lastData" placeholder="Last Data" type="number" value="10" min="0" max="100">
+          </ion-input>
+          <div class="my-inp-error"
+            *ngIf="controlForm.get('lastData').hasError('required') && controlForm.get('lastData').touched">
+            <ion-icon name="alert-circle-outline"></ion-icon>Last Data is required
+          </div>
+        </div>
+        <div class="my-checkbox form-field">
+          <ion-checkbox color="secondary" checked slot="start" formControlName="startFresh"></ion-checkbox>
+          <ion-label>Start with Fresh Data</ion-label>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="controlForm.get('readFor')">
+        <div class="form-field">
+          <ion-select placeholder="Read For" formControlName="readFor">
+            <ion-select-option value="process">Read Processed</ion-select-option>
+            <ion-select-option value="raw">Read Raw Values</ion-select-option>
+          </ion-select>
+          <div class="my-inp-error"
+            *ngIf="controlForm.get('readFor').hasError('required') && controlForm.get('readFor').touched">
+            <ion-icon name="alert-circle-outline"></ion-icon> Read For is required
+          </div>
+        </div>
+        <!-- <div class="form-field">
+          <ion-select placeholder="Query For" formControlName="queryFor">
+            <ion-select-option value="datarange">Date Range</ion-select-option>
+            <ion-select-option value="nndays">NN days</ion-select-option>
+          </ion-select>
+          <div class="my-inp-error"
+            *ngIf="controlForm.get('queryFor').hasError('required') && controlForm.get('queryFor').touched">
+            <ion-icon name="alert-circle-outline"></ion-icon> Query For is required
+          </div>
+        </div>
+        <ng-container *ngIf="controlForm.get('lastnndays')">
+          <div class="form-field">
+            <ion-input placeholder="Last NN Days" type="number" formControlName="lastnndays">
+            </ion-input>
+            <div class="my-inp-error"
+              *ngIf="controlForm.get('lastnndays').hasError('required') && controlForm.get('lastnndays').touched">
+              <ion-icon name="alert-circle-outline"></ion-icon> Last NN Days is required
+            </div>
+          </div>
+        </ng-container> -->
+        <ng-container *ngIf="controlForm.get('from')">
+          <div class="multi-field">
+            <div class="form-field">
+              <ion-datetime placeholder="From" formControlName="from"></ion-datetime>
+              <div class="my-inp-error"
+                *ngIf="controlForm.get('from').hasError('required') && controlForm.get('from').touched">
+                <ion-icon name="alert-circle-outline"></ion-icon>From is required
+              </div>
+            </div>
+            <div class="form-field">
+              <ion-datetime placeholder="To" formControlName="to"></ion-datetime>
+              <div class="my-inp-error"
+                *ngIf="controlForm.get('to').hasError('required') && controlForm.get('to').touched">
+                <ion-icon name="alert-circle-outline"></ion-icon> To is required
+              </div>
+            </div>
+          </div>
+          <div class="multi-field">
+            <div class="form-field">
+              <ion-datetime placeholder="From Time" formControlName="fromTime" display-format="h:mm A"
+                picker-format="h:mm A">
+              </ion-datetime>
+              <div class="my-inp-error"
+                *ngIf="controlForm.get('fromTime').hasError('required') && controlForm.get('fromTime').touched">
+                <ion-icon name="alert-circle-outline"></ion-icon> From Time is required
+              </div>
+            </div>
+            <div class="form-field">
+              <ion-datetime placeholder="To Time" formControlName="toTime" display-format="h:mm A"
+                picker-format="h:mm A">
+              </ion-datetime>
+              <div class="my-inp-error"
+                *ngIf="controlForm.get('toTime').hasError('required') && controlForm.get('toTime').touched">
+                <ion-icon name="alert-circle-outline"></ion-icon> To Time is required
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="controlForm.get('interval')">
+          <div class="form-field">
+            <ion-select placeholder="Interval Type" formControlName="intervalType">
+              <ion-select-option value="Year">Year</ion-select-option>
+              <ion-select-option value="Month">Month</ion-select-option>
+              <ion-select-option value="Week">Week</ion-select-option>
+              <ion-select-option value="Hour">Hour</ion-select-option>
+              <ion-select-option value="Day">Day</ion-select-option>
+              <ion-select-option value="Minute">Minute</ion-select-option>
+              <ion-select-option value="Second">Second</ion-select-option>
+            </ion-select>
+            <div class="my-inp-error"
+              *ngIf="controlForm.get('intervalType').hasError('required') && controlForm.get('intervalType').touched">
+              <ion-icon name="alert-circle-outline"></ion-icon>Interval Type is required
+            </div>
+          </div>
+          <div class="form-field">
+            <ion-input placeholder="Interval Value" type="number" formControlName="interval"></ion-input>
+            <!-- <ion-select placeholder="Interval" formControlName="interval">
+              <ion-select-option value="minutes">Minutes</ion-select-option>
+              <ion-select-option value="hours">Hours</ion-select-option>
+              <ion-select-option value="days">Days</ion-select-option>
+            </ion-select> -->
+            <div class="my-inp-error"
+              *ngIf="controlForm.get('interval').hasError('required') && controlForm.get('interval').touched">
+              <ion-icon name="alert-circle-outline"></ion-icon>Interval Value is Required
+            </div>
+          </div>
+     
+          <!-- <div class="form-field" *ngIf="controlForm.get('minutes')">
+            <ion-input placeholder="Minutes" type="number" formControlName="minutes"></ion-input>
+            <div class="my-inp-error"
+              *ngIf="controlForm.get('minutes').hasError('required') && controlForm.get('minutes').touched">
+              <ion-icon name="alert-circle-outline"></ion-icon>Minutes is required
+            </div>
+          </div>
+          <div class="form-field" *ngIf="controlForm.get('hours')">
+            <ion-input placeholder="Hours" type="number" formControlName="hours"></ion-input>
+            <div class="my-inp-error"
+              *ngIf="controlForm.get('hours').hasError('required') && controlForm.get('hours').touched">
+              <ion-icon name="alert-circle-outline"></ion-icon>Hours is required
+            </div>
+          </div>
+          <div class="form-field" *ngIf="controlForm.get('days')">
+            <ion-input placeholder="Days" type="number" formControlName="days">
+            </ion-input>
+            <div class="my-inp-error"
+              *ngIf="controlForm.get('days').hasError('required') && controlForm.get('days').touched">
+              <ion-icon name="alert-circle-outline"></ion-icon>Days is required
+            </div>
+          </div> -->
+          <div class="form-field">
+            <ion-select placeholder="Operations" formControlName="operations">
+              <ion-select-option *ngFor="let aggerate of aggerateData" [value]="aggerate['AggName']">
+                {{aggerate['AggName']}}</ion-select-option>
+            </ion-select>
+            <div class="my-inp-error"
+              *ngIf="controlForm.get('operations').hasError('required') && controlForm.get('operations').touched">
+              <ion-icon name="alert-circle-outline"></ion-icon>Operations is required
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="controlForm.get('maxRows')">
+          <div class="form-field">
+            <ion-input placeholder="Max Rows" type="number" formControlName="maxRows">
+            </ion-input>
+            <div class="my-inp-error"
+              *ngIf="controlForm.get('maxRows').hasError('required') && controlForm.get('maxRows').touched">
+              <ion-icon name="alert-circle-outline"></ion-icon>Max Rows is required
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+      <div class="form-field mb-3">
+        <ion-select placeholder="Tags" formControlName="tags" multiple="true" cancelText="Cancel" okText="OK" [disabled]="tagsData.length == 0" [interfaceOptions]="customAlertOptions">
+          <ion-select-option *ngFor="let tag of tagsData" [value]="tag['TagName']">{{tag['TagName']}}
+          </ion-select-option>
+        </ion-select>
+        <a class="add-tags" (click)="addTags()">+ Add Tags</a>
+        <div class="my-inp-error"
+          *ngIf="controlForm.get('tags').hasError('required') && controlForm.get('tags').touched">
+          <ion-icon name="alert-circle-outline"></ion-icon>Tags is required
+        </div>
+        <div class="my-inp-error"
+          *ngIf="controlForm.get('tags').hasError('tagLength') && controlForm.get('tags').touched">
+          <ion-icon name="alert-circle-outline"></ion-icon>Maximum 8 Tags only allowed
+        </div>
+      </div>
+      <div class="toggle-btns">
+        <ion-item class="tog-point" lines="none">          
+          <ion-label>Points</ion-label>
+          <ion-toggle slot="start" name="points" formControlName="pointFlag"></ion-toggle>
+        </ion-item>
+        <ion-item class="tog-point" lines="none">          
+          <ion-label>Grid</ion-label>
+          <ion-toggle slot="start" name="grid" formControlName="gridFlag"></ion-toggle>
+        </ion-item>
+      </div>
+
+      <ion-button expand="block" *ngIf="!data" (click)="controlFormSubmit()">Submit</ion-button>
+      <ion-button expand="block" *ngIf="data" (click)="controlFormSubmit()">Update</ion-button>
+    </div>
+  </ion-content>
+</div>

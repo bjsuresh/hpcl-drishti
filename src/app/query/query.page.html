@@ -1,0 +1,106 @@
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+    <ng-container *ngIf="queryProperty && query != null">
+    <ng-container *ngIf="queryProperty.processFor != 'query'">
+      <div class="play-pause">
+        <ion-button [disabled]="!queryProperty.zoom" (click)="play(queryProperty)">
+          <ion-icon name="play-outline"></ion-icon>
+        </ion-button>
+        <ion-button [disabled]="queryProperty.zoom" (click)="pause(queryProperty)">
+          <ion-icon name="pause-outline"></ion-icon>
+        </ion-button>
+      </div>
+    </ng-container>
+    </ng-container>
+  <ng-container *ngIf="queryProperty && query != null">
+    <h1 class="table-tlt">{{queryProperty.title}}</h1>
+    <div class="item">
+      <dx-chart id="chart" [dataSource]="queryProperty['chartDataSource']">
+        <dxi-series *ngFor="let tags of queryProperty['tags']" argumentField="datetime" [valueField]="tags"
+          [type]="queryProperty['chartType']" [name]="tags">
+          <dxo-aggregation [enabled]="true"></dxo-aggregation>
+          <dxo-point [visible]="queryProperty['pointFlag']"></dxo-point>
+        </dxi-series>
+        <dxo-legend verticalAlignment="top" horizontalAlignment="center" [rowCount]="2" [columnItemSpacing]="10" [columnCount]="1"
+        [rowItemSpacing]="0">
+        </dxo-legend>
+        <dxo-zoom-and-pan argumentAxis="both" valueAxis="both" *ngIf="queryProperty.zoom"></dxo-zoom-and-pan>
+        <dxo-tooltip [enabled]="true" [shared]="true">
+        </dxo-tooltip>
+        <dxi-value-axis name="value" position="left" valueType="numeric">
+          <dxo-grid [visible]="queryProperty.gridFlag"></dxo-grid>
+          <dxo-title [text]="queryProperty?queryProperty.valueAxis:'Value'"></dxo-title>
+        </dxi-value-axis>
+        <!-- <dxo-argument-axis [title]="queryProperty?queryProperty.arugumentAxis:'Argument'" [valueMarginsEnabled]="false"
+          argumentType="datetime"> -->
+        <dxo-argument-axis [title]="queryProperty?queryProperty.arugumentAxis:'Argument'" [valueMarginsEnabled]="false">
+          <dxo-grid [visible]="queryProperty.gridFlag"></dxo-grid>
+          <dxo-label format="shortTime"></dxo-label>
+        </dxo-argument-axis>
+        <dxo-common-series-settings argumentField="Time">
+          <dxo-grid [visible]="queryProperty.gridFlag"></dxo-grid>
+        </dxo-common-series-settings>
+        <dxo-crosshair [enabled]="true">
+          <dxo-label [visible]="true"></dxo-label>
+        </dxo-crosshair>
+        <!-- <ng-container *ngIf="role == 'A' || role == 'P'">
+          <dxo-export [enabled]="true"></dxo-export>
+        </ng-container> -->
+        <dxo-animation easing="linear" [duration]="500" [maxPointCountSupported]="100"> </dxo-animation>
+      </dx-chart>
+      <ng-container *ngIf="queryProperty">
+        <div class="message" *ngIf="queryProperty['chartDataSource'].length == 0 && queryProperty['processFor'] == 'realtime'">
+          <h5>No Tag Values in Realtime</h5>
+        </div>
+        <div class="message" *ngIf="queryProperty['chartDataSource'].length == 0 && queryProperty['processFor'] == 'query'">
+          <h5>No data to display</h5>
+        </div>
+      </ng-container>
+      <div class="btn-icos">
+        <ion-button (click)="openModalControl(queryProperty, 'chart')">
+          <ion-icon name="scan-outline"></ion-icon>
+        </ion-button>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="queryProperty && query != null">
+    <div class="item">
+      <!-- <h1 class="table-tlt">Title</h1> -->
+      <dx-data-grid id="gridContainer" [dataSource]="queryProperty.tableDataSource" [showBorders]="true" [columnAutoWidth]="true">
+        <dxo-group-panel [visible]="false"></dxo-group-panel>
+        <dxo-paging [pageSize]="10"></dxo-paging>
+        <!-- <ng-container *ngIf="role == 'A' || role == 'P'">
+            <dxo-export [enabled]="true"></dxo-export>
+        </ng-container> -->
+        <dxo-scrolling columnRenderingMode="virtual"></dxo-scrolling>
+      </dx-data-grid>
+      <div class="btn-icos">
+        <ion-button (click)="openModalControl(queryProperty, 'grid')">
+          <ion-icon name="scan-outline"></ion-icon>
+        </ion-button>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="query == null">
+    <div class="nodata_wrapper">
+      <img src="assets/nodata.svg" class="nodata_img">
+      <span>NO QUERY FOUND</span>
+    </div>
+  </ng-container>
+  <!-- <ng-container *ngIf="!queryProperty">
+    <div class="nodata_wrapper">
+      <img src="assets/nodata.svg" class="nodata_img">
+      <span>NO QUERY FOUND</span>
+    </div>
+  </ng-container> -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="openControlForm()">
+      <ion-icon name="add" *ngIf="!queryProperty || query == null"></ion-icon>
+      <ion-icon name="pencil-outline" *ngIf="queryProperty && query != null"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

@@ -1,0 +1,75 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+</ion-content> -->
+<div id="login">
+  <div class="wrapper">
+    <div class="details">
+      <div class="logo">
+        <img [src]="titleUrl" *ngIf="titleUrl" alt="">
+      </div>
+      <!-- <p class="logoname">
+        SAMA MP
+      </p> -->
+    </div>
+    <div class="login-wrapper" [formGroup]="loginForm">
+      <div class="form-field">
+        <ion-input placeholder="Username" type="text" formControlName="userName">
+          <ion-icon name="person"></ion-icon>
+        </ion-input>
+        <div class="my-inp-error" *ngIf="loginForm.get('userName').touched">
+          <ng-container *ngIf="loginForm.get('userName').hasError('required')">
+            <ion-icon name="alert-circle-outline">
+            </ion-icon> Username is required
+          </ng-container>
+        </div>
+      </div>
+      <div class="form-field">
+        <ion-input placeholder="Password" type="password" formControlName="password">
+          <ion-icon name="lock-open"></ion-icon>
+        </ion-input>
+        <div class="my-inp-error" *ngIf="loginForm.get('password').touched">
+          <ng-container *ngIf="loginForm.get('password').hasError('required')">
+          <ion-icon name="alert-circle-outline"></ion-icon> Password is required
+        </ng-container>
+        </div>
+      </div>
+      <!-- <div class="form-field">
+        <ion-select placeholder="Select IMEI" formControlName="imei">
+          <ion-select-option *ngFor="let sim of simCardDetials" [value]="sim.deviceId">{{sim.deviceId}}</ion-select-option>
+        </ion-select>
+        <div class="my-inp-error" *ngIf="loginForm.get('imei').touched">
+          <ng-container *ngIf="loginForm.get('imei').hasError('required')">
+            <ion-icon name="alert-circle-outline"></ion-icon> IMEI Number is required
+          </ng-container>
+        </div>
+      </div> -->
+      <div class="rem-pass">
+        <div class="my-checkbox">
+          <ion-checkbox color="secondary" checked slot="start" [(ngModel)]="remberMe" [ngModelOptions]="{standalone: true}"></ion-checkbox>
+          <ion-label>Remember me</ion-label>
+        </div>
+        <!-- <span class="forgot-pass">Forgot password</span> -->
+      </div>
+      <div class="btn">
+        <ion-button expand="block" (click)="login()">Login</ion-button>
+      </div>
+      <!-- <div class="icon-set" (click)="setting()">
+        <ion-icon name="settings-outline"></ion-icon>
+      </div> -->
+    </div>
+  </div>
+  <div class="bottom-icons">
+    <div>
+      <img [src]="GetVendor1Url" *ngIf="GetVendor1Url" alt="">
+    </div>
+    <div>
+      <img [src]="GetVendor2Url" *ngIf="GetVendor2Url" alt="">
+    </div>
+  </div>
+</div>

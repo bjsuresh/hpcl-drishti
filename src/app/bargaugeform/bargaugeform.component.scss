@@ -1,0 +1,50 @@
+@import '../../theme/variables.scss';
+
+#bargaugeform {
+    height: 100%;
+    .background {
+        //width: 100%;
+        height: 250px;
+        background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(34,53,152,1) 0%, rgba(0,212,255,1) 100%);
+        position: absolute;
+        width: 100%;
+        border-bottom-right-radius: 100px;
+    }
+    ion-content {
+        .form {
+            margin: 24px;
+            position: relative;
+            background: white;
+            padding: 30px 12px 12px 12px;
+            border-radius: 5px;
+            box-shadow: 0 1px 6px 0 rgba(32,33,36,.28);
+        }
+       /*  .form-fields {
+
+        } */
+        .item-native {
+            padding: 0;
+        }
+        .heading {
+            position: relative;
+            font-weight: bold;
+            font-size: 20px;
+            color: white;
+            margin: 24px;
+            display: flex;
+            justify-content: space-between;
+            .close {
+                cursor: pointer;
+            }
+        }
+        .add-tags {
+            padding: 14px 6px;
+            display: block;
+            text-align: right;
+            text-decoration: underline;
+            color: #223598;
+        }
+    }
+}
+
+

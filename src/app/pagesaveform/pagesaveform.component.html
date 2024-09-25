@@ -1,0 +1,107 @@
+<div id="pagesaveform">
+  <ion-header translucent>
+    <ion-toolbar>
+      <ion-buttons slot="start" (click)="dismissModal()">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-title *ngIf="!data">Add Page</ion-title>
+      <ion-title *ngIf="data">Edit Page</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content fullscreen>
+    <div class="background">
+    </div>
+    <!-- <div class="heading">
+      <span>Save Page</span>
+      <span class="close" (click)="dismissModal()">Close</span>
+    </div> -->
+    <div class="form" [formGroup]="controlForm">
+      <div class="form-field">
+        <ion-input placeholder="Name" type="text" formControlName="PageName">
+        </ion-input>
+        <div class="my-inp-error"
+          *ngIf="controlForm.get('PageName').hasError('required') && controlForm.get('PageName').touched">
+          <ion-icon name="alert-circle-outline"></ion-icon> Page Name is required
+        </div>
+        <div class="my-inp-error"
+          *ngIf="controlForm.get('PageName').hasError('restrictedKeywords') && controlForm.get('PageName').touched">
+          <ion-icon name="alert-circle-outline"></ion-icon> Invalid input. Restricted characters are not allowed.
+        </div>
+      </div>
+      <div class="form-field">
+        <ion-input placeholder="Refresh Rate (seconds)" type="number" formControlName="RefreshRate">
+        </ion-input>
+        <div class="my-inp-error"
+          *ngIf="controlForm.get('RefreshRate').hasError('required') && controlForm.get('RefreshRate').touched">
+          <ion-icon name="alert-circle-outline"></ion-icon> Refresh Rate is required
+        </div>
+      </div>
+      
+      <ng-container *ngIf="!data">
+        <div class="form-field" *ngIf="controlForm.get('PageAccessType')">
+          <ion-select placeholder="Page Access Type" formControlName="PageAccessType">
+            <ion-select-option *ngFor="let pageAccess of PageAccessTypeOptions" [value]="pageAccess.value">{{pageAccess.name}}
+            </ion-select-option>
+          </ion-select>
+        </div>
+        <ion-radio-group formControlName="MapType" *ngIf="controlForm.get('MapType')">
+          <div class="radio-list">
+            <div class="radio-item">
+              <ion-radio slot="start" value="E"></ion-radio>
+              <ion-label>Enterprise</ion-label>
+            </div>
+            <div class="radio-item">
+              <ion-radio slot="start" value="S"></ion-radio>
+              <ion-label>Site</ion-label>
+            </div>
+            <div class="radio-item">
+              <ion-radio slot="start" value="P"></ion-radio>
+              <ion-label>Plant</ion-label>
+            </div>
+            <div class="radio-item">
+              <ion-radio slot="start" value="A"></ion-radio>
+              <ion-label>Area</ion-label>
+            </div>
+            <div class="radio-item">
+              <ion-radio slot="start" value="Un"></ion-radio>
+              <ion-label>Unit</ion-label>
+            </div>
+          </div>
+        </ion-radio-group>
+        <div class="form-field" *ngIf="controlForm.get('EnterpriseId')">
+          <ion-select placeholder="Enterprise" formControlName="EnterpriseId">
+            <ion-select-option *ngFor="let plantarea of enterpriseOptions" [value]="plantarea.id">{{plantarea.name}}
+            </ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-field" *ngIf="controlForm.get('SiteId')">
+          <ion-select placeholder="Site" formControlName="SiteId">
+            <ion-select-option *ngFor="let plantarea of siteOptions" [value]="plantarea.SiteId">{{plantarea.SiteName}}
+            </ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-field" *ngIf="controlForm.get('PlantId')">
+          <ion-select placeholder="Plant" formControlName="PlantId">
+            <ion-select-option *ngFor="let plantarea of plantOptions" [value]="plantarea.PlantId">{{plantarea.PlantName}}
+            </ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-field" *ngIf="controlForm.get('AreaId')">
+          <ion-select placeholder="Area" formControlName="AreaId">
+            <ion-select-option *ngFor="let plantarea of areaOptions" [value]="plantarea.AreaId">{{plantarea.AreaName}}
+            </ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-field" *ngIf="controlForm.get('UnitId')">
+          <ion-select placeholder="Unit" formControlName="UnitId">
+            <ion-select-option *ngFor="let plantarea of unitOptions" [value]="plantarea.UnitId">{{plantarea.UnitName}}
+            </ion-select-option>
+          </ion-select>
+        </div>
+      </ng-container>
+      <ion-button expand="block" *ngIf="!data" (click)="controlFormSubmit()">Submit</ion-button>
+      <ion-button expand="block" *ngIf="data" (click)="update()">Update</ion-button>
+      <!-- <ion-button expand="block" *ngIf="data.pagename" (click)="controlFormSubmit()">Update</ion-button> -->
+    </div>
+  </ion-content>
+</div>

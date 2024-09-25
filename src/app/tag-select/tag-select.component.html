@@ -1,0 +1,36 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-buttons slot="start" (click)="dismissModal()">
+      <ion-back-button default-href="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Tags</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+<ion-content fullscreen class="ion-padding">
+  <ion-searchbar [(ngModel)]="searchInput" (ionChange)="searchBarChanged()"></ion-searchbar>
+
+  <div class="list-container">
+    <dx-list 
+        #list
+        [dataSource]="tagsData"
+        [showSelectionControls]="true"
+        [selectionMode]="mode"
+        selectAllMode="page"
+        [selectedItems]="selectedItem"
+        (onSelectionChanged)="onSelectionChanged($event)"
+        [searchEnabled]="false"
+        searchExpr="TagName"
+        searchMode="contains"
+        [keyExpr]="'TagID'"
+        >
+            <div *dxTemplate="let data of 'item'">
+                <div>{{data.TagName}}</div>
+            </div>
+    </dx-list>
+    <p class="view-more" (click)="viewMore()">View More</p>
+  </div>
+</ion-content>
+<ion-footer class="footer-part">
+  <ion-button expand="block" (click)="submitTags()">Submit</ion-button>
+</ion-footer>

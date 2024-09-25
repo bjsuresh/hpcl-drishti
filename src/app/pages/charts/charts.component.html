@@ -1,0 +1,38 @@
+<ion-content class="ion-padding">
+  <!-- <dx-chart id="chart" [dataSource]="dataSource" title="Barchart">
+    <dxi-series argumentField="day" valueField="oranges" type="spline" name="Tag1"></dxi-series>
+    <dxo-legend verticalAlignment="top" horizontalAlignment="center">
+    </dxo-legend>
+    <dxo-tooltip [enabled]="true" [shared]="true">
+    </dxo-tooltip>
+    <dxi-value-axis name="value" position="left">
+      <dxo-grid [visible]="true"></dxo-grid> -->
+      <!-- <dxo-title [text]="data.data?data.data.valueAxis:'Value'"></dxo-title> -->
+    <!-- </dxi-value-axis> -->
+    <!-- <dxo-argument-axis [title]="data.data?data.data.arugumentAxis:'Argument'">
+    </dxo-argument-axis> -->
+    <!-- <dxo-export [enabled]="true"></dxo-export> -->
+    <!-- <dxo-animation easing="linear" [duration]="500" [maxPointCountSupported]="100"> </dxo-animation>
+  </dx-chart>-->
+  <!-- <dx-chart id="chart" [dataSource]="dataSource" title="Mill Outlet Temperature">
+    <dxi-series argumentField="day" valueField="oranges" type="spline" name="10HFC01CT111X.PV"></dxi-series>
+    <dxo-legend verticalAlignment="top" horizontalAlignment="center">
+    </dxo-legend>
+    <dxo-tooltip [enabled]="true" [shared]="true">
+    </dxo-tooltip>
+    <dxi-value-axis name="value" position="left">
+      <dxo-grid [visible]="true"></dxo-grid>
+      <dxo-title [text]="Temperature"></dxo-title>
+    </dxi-value-axis>
+    <dxo-argument-axis [title]="Time">
+    </dxo-argument-axis>
+    <dxo-export [enabled]="true"></dxo-export>
+    <dxo-animation easing="linear" [duration]="500" [maxPointCountSupported]="100"> </dxo-animation>
+  </dx-chart> -->
+  <h3>Mill Outlet Temperature</h3>
+  <dx-data-grid id="gridContainer" [dataSource]="tableData" [columns]="['Tagname', 'Value', 'Timestamp', 'Description']"
+    [showBorders]="true" [allowColumnResizing]="true">
+    <dxo-group-panel [visible]="true" [allowColumnDragging]="false"></dxo-group-panel>
+    <dxo-export [enabled]="true"></dxo-export>
+  </dx-data-grid>
+</ion-content> 

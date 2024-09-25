@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,SAAS,CAAC,MAAM,CAAC;EACb,MAAM,EAAE,KAAK;CAEhB",
+    "sources": [
+        "../src/app/pages/charts/charts.component.scss"
+    ],
+    "names": [],
+    "file": "charts.component.css"
+}

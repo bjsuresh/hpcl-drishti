@@ -1,0 +1,139 @@
+<!-- <ion-content class="ion-padding">
+  <div id="mainpage">
+    <div class="item" *ngFor="let data of layoutData.data; let i = index">
+      <ng-container *ngIf="data.type == 'chart'">
+        <dx-chart id="chart" [dataSource]="dataSource" [title]="data.data?data.data.title:'Title'">
+          <dxi-series argumentField="day" valueField="oranges" type="spline" name="Tag1"></dxi-series>
+          <dxo-legend verticalAlignment="top" horizontalAlignment="center">
+          </dxo-legend>
+          <dxo-tooltip [enabled]="true" [shared]="true">
+          </dxo-tooltip>
+          <dxi-value-axis name="value" position="left">
+            <dxo-grid [visible]="true"></dxo-grid>
+            <dxo-title [text]="data.data?data.data.valueAxis:'Value'"></dxo-title>
+          </dxi-value-axis>
+          <dxo-argument-axis [title]="data.data?data.data.arugumentAxis:'Argument'">
+          </dxo-argument-axis>
+          <dxo-export [enabled]="true"></dxo-export>
+          <dxo-animation easing="linear" [duration]="500" [maxPointCountSupported]="100"> </dxo-animation>
+        </dx-chart>
+      </ng-container>
+
+      <ng-container *ngIf="data.type == 'grid'">
+        <dx-data-grid id="gridContainer" [columns]="data.data?data.data.displayfields:gridfields" [showBorders]="true">
+          <dxo-group-panel [visible]="true"></dxo-group-panel>
+          <dxo-export [enabled]="true"></dxo-export>
+        </dx-data-grid>
+      </ng-container>
+
+      <ng-container *ngIf="data.type == 'bargauge'">
+        <dx-bar-gauge id="gauge" [startValue]="data.data?data.data.startvalue:'1'"
+          [endValue]="data.data?data.data.endvalue:'100'" [values]="[47, 65, 84]">
+          <dxo-label [indent]="30">
+            <dxo-format type="fixedPoint" [precision]="1"></dxo-format>
+          </dxo-label>
+          <dxo-export [enabled]="true"></dxo-export>
+          <dxo-title [text]="data.data?data.data.title:'Title'">
+            <dxo-font [size]="28"></dxo-font>
+          </dxo-title>
+          <dxo-animation easing="linear" [duration]="500">
+          </dxo-animation>
+          <dxo-legend [visible]="true" verticalAlignment="bottom" horizontalAlignment="center">
+          </dxo-legend>
+        </dx-bar-gauge>
+      </ng-container>
+
+      <ng-container *ngIf="data.type == 'circulargauge'">
+        <dx-circular-gauge id="circulargauge" [value]="105">
+          <dxo-scale [startValue]="data.data?data.data.startvalue:'1'" [endValue]="data.data?data.data.endvalue:'200'"
+            [tickInterval]="10">
+            <dxo-label [useRangeColors]="true"></dxo-label>
+          </dxo-scale>
+          <dxo-range-container palette="pastel">
+            <dxi-range [startValue]="50" [endValue]="90"></dxi-range>
+            <dxi-range [startValue]="90" [endValue]="130"></dxi-range>
+            <dxi-range [startValue]="130" [endValue]="150"></dxi-range>
+          </dxo-range-container>
+          <dxo-export [enabled]="true"></dxo-export>
+          <dxo-title [text]="data.data?data.data.title:'Title'">
+            <dxo-font [size]="28"></dxo-font>
+          </dxo-title>
+        </dx-circular-gauge>
+      </ng-container>
+
+      <ng-container *ngIf="data.type == 'lineargauge'">
+        <dx-linear-gauge id="lineargauge" [value]="430">
+          <dxo-scale [startValue]="data.data?data.data.startvalue:'1'" [endValue]="data.data?data.data.endvalue:'500'"
+            [tickInterval]="50" [minorTickInterval]="10">
+            <dxo-minor-tick [visible]="true"></dxo-minor-tick>
+          </dxo-scale>
+          <dxo-export [enabled]="true"></dxo-export>
+          <dxo-title [text]="data.data?data.data.title:'Title'">
+            <dxo-font [size]="28"></dxo-font>
+          </dxo-title>
+          <dxo-animation easing="linear" [duration]="500">
+          </dxo-animation>
+        </dx-linear-gauge>
+      </ng-container>
+      </div>
+  </div>
+</ion-content> -->
+<ion-content class="ion-padding">
+  <div id="mainpage">
+    <div class="item">
+      <ng-container>
+        <dx-chart id="chart" [dataSource]="dataSource" title="Mill Outlet Temperature">
+          <dxi-series argumentField="day" valueField="oranges" type="spline" name="10HFC01CT111X.PV"></dxi-series>
+          <dxo-legend verticalAlignment="top" horizontalAlignment="center">
+          </dxo-legend>
+          <dxo-tooltip [enabled]="true" [shared]="true">
+          </dxo-tooltip>
+          <dxi-value-axis name="value" position="left">
+            <dxo-grid [visible]="true"></dxo-grid>
+            <dxo-title text="Temperature"></dxo-title>
+          </dxi-value-axis>
+          <dxo-argument-axis title="Time">
+          </dxo-argument-axis>
+          <dxo-export [enabled]="true"></dxo-export>
+          <dxo-animation easing="linear" [duration]="500" [maxPointCountSupported]="100"> </dxo-animation>
+        </dx-chart>
+      </ng-container>
+      <h3>Mill Outlet Temperature</h3>
+      <dx-data-grid id="gridContainer" [dataSource]="tableData" [columns]="['Tagname', 'Value', 'Timestamp', 'Description']" [showBorders]="true" [allowColumnResizing]="true">
+        <dxo-group-panel [visible]="true" [allowColumnDragging]="false"></dxo-group-panel>
+        <dxo-export [enabled]="true"></dxo-export>
+      </dx-data-grid>
+      <dx-circular-gauge id="circulargauge" [value]="105">
+        <dxo-scale [startValue]="1" [endValue]="200"
+          [tickInterval]="10">
+          <dxo-label [useRangeColors]="true"></dxo-label>
+        </dxo-scale>
+        <dxo-range-container palette="pastel">
+          <dxi-range [startValue]="50" [endValue]="90"></dxi-range>
+          <dxi-range [startValue]="90" [endValue]="130"></dxi-range>
+          <dxi-range [startValue]="130" [endValue]="150"></dxi-range>
+        </dxo-range-container>
+        <dxo-export [enabled]="true"></dxo-export>
+        <dxo-title text="Mill Outlet Temperature">
+          <dxo-font [size]="28"></dxo-font>
+        </dxo-title>
+      </dx-circular-gauge>
+      </div>
+  </div>
+</ion-content>
+<!-- <ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="schedule">
+      <ion-icon name="search-circle-outline"></ion-icon>
+      <ion-label>Query</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="schedule">
+      <ion-icon name="bar-chart-outline"></ion-icon>
+      <ion-label>Pages</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="schedule">
+      <ion-icon name="people-outline"></ion-icon>
+      <ion-label>Users</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs> -->

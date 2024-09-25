@@ -1,0 +1,87 @@
+<div id="gridform">
+  <ion-content fullscreen>
+    <div class="background">
+    </div>
+    <div class="heading">
+      <span>Indicator Properties</span>
+      <span class="close" (click)="dismissModal()">Close</span>
+      <!-- <ion-icon name="close-circle-outline"></ion-icon> -->
+    </div>
+    <div class="form">
+      <div class="form-field">
+        <ion-input placeholder="Title" type="text" [(ngModel)]="title">
+        </ion-input>
+        <!-- <div class="my-inp-error"
+          *ngIf="controlForm.get('title').hasError('required') && controlForm.get('title').touched">
+          <ion-icon name="alert-circle-outline"></ion-icon> Title is required
+        </div> -->
+      </div>
+      <ng-container *ngFor="let tag of groupOfTags; let i = index">
+        <div *ngIf="i != 0" class="close-icon-wrapper">
+          <ion-icon name="close-outline" (click)="deleteTag(i)"></ion-icon>
+        </div>
+        <div class="cond-blk">
+          <div class="form-field">
+            <ion-select placeholder="Tags" cancelText="Cancel" okText="OK" [(ngModel)]="tag.tag" [disabled]="tag.tagsData.length == 0" [interfaceOptions]="customAlertOptions">
+              <ion-select-option *ngFor="let tag of tag.tagsData" [value]="tag['TagName']">{{tag['TagName']}}
+              </ion-select-option>
+            </ion-select>
+            <a class="add-tags" (click)="addTags(tag)">+ Add Tags</a>
+          </div>
+          <div class="form-field">
+            <ion-input placeholder="Alias Name" type="text" [(ngModel)]="tag.aliasName">
+            </ion-input>
+          </div>
+          <!-- {{tag.optionValue}} -->
+          <ion-radio-group [(ngModel)]="tag.optionValue">
+            <div class="radio-list">
+              <div class="radio-item">
+                <ion-radio slot="start" value="0"></ion-radio>
+                <ion-label>True or False</ion-label>
+              </div>
+              <div class="radio-item">
+                <ion-radio slot="start" value="1"></ion-radio>
+                <ion-label>0 or 1</ion-label>
+              </div>
+            </div>
+          </ion-radio-group>
+          <!-- <p class="add-more-sec add-condition-tag" *ngIf="tag['condition'].length < 2" (click)="addCondition(tag)">Add
+            Condition</p> -->
+          <ng-container *ngFor="let condition of tag['condition']; let j = index">
+            <div class="inner-cond-blk">
+              <div class="form-field condition-box">
+                <ion-select placeholder="Symbol" cancelText="Cancel" okText="OK" [(ngModel)]="condition.symbol" value="=">
+                  <ion-select-option *ngFor="let con of conditionsArray" [value]="con">{{con}}
+                  </ion-select-option>
+                </ion-select>
+                <ng-container *ngIf="tag.optionValue == '1'">
+                  <ion-select placeholder="Value" cancelText="Cancel" okText="OK" [(ngModel)]="condition.value" disabled="true">
+                    <ion-select-option value="0">0</ion-select-option>
+                    <ion-select-option value="1">1</ion-select-option>
+                  </ion-select>
+                </ng-container>
+                <ng-container *ngIf="tag.optionValue == '0'">
+                  <ion-select placeholder="Value" cancelText="Cancel" okText="OK" [(ngModel)]="condition.value" disabled="true">
+                    <ion-select-option value="0">False</ion-select-option>
+                    <ion-select-option value="1">True</ion-select-option>
+                  </ion-select>
+                </ng-container>
+              </div>
+              <div class="form-field color-wrapper-fm">
+                <ion-label class="color-label">Choose a color</ion-label>
+                <input [(colorPicker)]="condition.color" [style.background]="condition.color" class="color-picker-inp"
+                  [cpPresetColors]="['#ff0000', '#008000', '#ffff00']" >
+                <!-- <ng-container *ngIf="j != 0">
+                  <ion-icon name="trash-outline" (click)="deleteCondition(tag, j)"></ion-icon>
+                </ng-container> -->
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </ng-container>
+      <p class="add-more-sec" (click)="addTag()">Add Tag</p>
+      <ion-button expand="block" *ngIf="!data" (click)="controlFormSubmit()">Submit</ion-button>
+      <ion-button expand="block" *ngIf="data" (click)="controlFormSubmit()">Update</ion-button>
+    </div>
+  </ion-content>
+</div>

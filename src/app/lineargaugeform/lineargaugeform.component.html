@@ -1,0 +1,93 @@
+<div id="lineargaugeform">
+  <ion-content fullscreen>
+  <div class="background">
+  </div>
+  <div class="heading">
+    <span>LinearGauge Properties</span>
+    <span class="close" (click)="dismissModal()">Close</span>
+    <!-- <ion-icon name="close-circle-outline"></ion-icon> -->
+  </div>
+  <div class="form" [formGroup]="controlForm">
+    <div class="form-field">
+      <ion-input placeholder="Title" type="text" formControlName="title">
+      </ion-input>
+      <div class="my-inp-error" *ngIf="controlForm.get('title').hasError('required') && controlForm.get('title').touched"><ion-icon name="alert-circle-outline"></ion-icon> Title is required</div>
+    </div>
+   
+    <!-- <div class="form-field">
+      <ion-input placeholder="Start Value" type="number" formControlName="startvalue">
+      </ion-input>
+      <div class="my-inp-error" *ngIf="controlForm.get('startvalue').hasError('required') && controlForm.get('startvalue').touched"><ion-icon name="alert-circle-outline"></ion-icon> StartValue is required</div>
+    </div>  
+
+    <div class="form-field">
+      <ion-input placeholder="End Value" type="number" formControlName="endvalue">
+      </ion-input>
+      <div class="my-inp-error" *ngIf="controlForm.get('endvalue').hasError('required') && controlForm.get('endvalue').touched"><ion-icon name="alert-circle-outline"></ion-icon> EndValue is required</div>
+    </div>  -->
+
+    <div class="grp-form">
+      <div class="form-field">
+        <ion-input placeholder="From Range 1" type="number" formControlName="rangeFormValue1">
+        </ion-input>
+        <div class="my-inp-error" *ngIf="controlForm.get('rangeFormValue1').hasError('required') && controlForm.get('rangeFormValue1').touched"><ion-icon name="alert-circle-outline"></ion-icon> Required</div>
+      </div> 
+      <div class="form-field">
+        <ion-input placeholder="To Range 1" type="number" formControlName="rangeToValue1">
+        </ion-input>
+        <div class="my-inp-error" *ngIf="controlForm.get('rangeToValue1').hasError('required') && controlForm.get('rangeToValue1').touched"><ion-icon name="alert-circle-outline"></ion-icon> Required</div>
+      </div> 
+    </div>
+    <div class="form-field">
+      <ion-select placeholder="Range Color 1" formControlName="rangeColor1" multiple="false" cancelText="Cancel" okText="OK">
+        <ion-select-option *ngFor="let color of basicColors" [value]="color['value']" >{{color['name']}}</ion-select-option>
+      </ion-select>
+      <div class="my-inp-error" *ngIf="controlForm.get('rangeColor1').hasError('required') && controlForm.get('rangeColor1').touched"><ion-icon name="alert-circle-outline"></ion-icon> Required</div>
+    </div>
+    <div class="grp-form">
+      <div class="form-field">
+        <ion-input placeholder="From Range 2" type="number" formControlName="rangeFormValue2" disabled>
+        </ion-input>
+        <div class="my-inp-error" *ngIf="controlForm.get('rangeFormValue2').hasError('required') && controlForm.get('rangeFormValue2').touched"><ion-icon name="alert-circle-outline"></ion-icon> Required</div>
+      </div> 
+      <div class="form-field">
+        <ion-input placeholder="To Range 2" type="number" formControlName="rangeToValue2">
+        </ion-input>
+        <div class="my-inp-error" *ngIf="controlForm.get('rangeToValue2').hasError('required') && controlForm.get('rangeToValue2').touched"><ion-icon name="alert-circle-outline"></ion-icon> Required</div>
+      </div> 
+    </div>
+    <div class="form-field">
+      <ion-select placeholder="Range Color 2" formControlName="rangeColor2" multiple="false" cancelText="Cancel" okText="OK">
+        <ion-select-option *ngFor="let color of basicColors" [value]="color['value']" >{{color['name']}}</ion-select-option>
+      </ion-select>
+      <div class="my-inp-error" *ngIf="controlForm.get('rangeColor2').hasError('required') && controlForm.get('rangeColor2').touched"><ion-icon name="alert-circle-outline"></ion-icon> Required</div>
+    </div>
+    <div class="grp-form">
+      <div class="form-field">
+        <ion-input placeholder="From Range 3" type="number" formControlName="rangeFormValue3" disabled>
+        </ion-input>
+        <div class="my-inp-error" *ngIf="controlForm.get('rangeFormValue3').hasError('required') && controlForm.get('rangeFormValue3').touched"><ion-icon name="alert-circle-outline"></ion-icon> Required</div>
+      </div> 
+      <div class="form-field">
+        <ion-input placeholder="To Range 3" type="number" formControlName="rangeToValue3">
+        </ion-input>
+        <div class="my-inp-error" *ngIf="controlForm.get('rangeToValue3').hasError('required') && controlForm.get('rangeToValue3').touched"><ion-icon name="alert-circle-outline"></ion-icon> Required</div>
+      </div> 
+    </div>
+    <div class="form-field">
+      <ion-select placeholder="Range Color 3" formControlName="rangeColor3" multiple="false" cancelText="Cancel" okText="OK">
+        <ion-select-option *ngFor="let color of basicColors" [value]="color['value']" >{{color['name']}}</ion-select-option>
+      </ion-select>
+      <div class="my-inp-error" *ngIf="controlForm.get('rangeColor3').hasError('required') && controlForm.get('rangeColor3').touched"><ion-icon name="alert-circle-outline"></ion-icon> Required</div>
+    </div>
+    <div class="form-field">
+      <ion-select placeholder="Tags" formControlName="tags" multiple="false" cancelText="Cancel" okText="OK"  [disabled]="tagsData.length == 0" [interfaceOptions]="customAlertOptions">
+        <ion-select-option *ngFor="let tag of tagsData" [value]="tag['TagName']">{{tag['TagName']}}</ion-select-option>
+      </ion-select>
+    </div>
+    <a class="add-tags" (click)="addTags()">+ Add Tags</a>
+    <ion-button expand="block" *ngIf="!data" (click)="controlFormSubmit()">Submit</ion-button>
+    <ion-button expand="block" *ngIf="data" (click)="controlFormSubmit()">Update</ion-button>
+  </div>
+</ion-content>
+</div>

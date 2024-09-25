@@ -1,0 +1,78 @@
+// #addpage {
+//     padding: 20px;
+//     .btn {
+//         text-align: center;
+//     }
+// }
+#addpage {
+    height: calc(100% - 56px);
+    ion-header {
+        display: flex;
+        align-items: center;
+        ion-button {
+            --background: #40a5aa;
+        }
+        .save-pd {
+            margin-right: 23px;
+        }
+        .header-items {
+            display: flex;
+        }
+    }
+    .but-tool-icons {
+        justify-content: space-between;
+    }
+    ion-content {
+        .table-tlt {
+            text-align: center;
+        }
+        .item {
+            padding-bottom: 30px;
+            margin-top: 20px;
+            .btn {
+                margin-top: 12px;
+                text-align: center;
+            }
+            border-bottom: 1px solid #80808063;
+        }
+    }
+    ion-back-button {
+        display: block !important;
+    }
+    .btn_txt {
+        font-weight: 700;
+        margin: 13px;
+        font-size: 18px;
+    }
+    .nodata_wrapper {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+        .nodata_img {
+            width: 124px;
+        }
+        span {
+            margin-top: 16px;
+            color: #76777bf7;
+            font-weight: bold;
+        }
+    }
+    .light-indicator-wrapper {
+        display: flex;
+        align-items: center;
+        .light-indicator {
+            width: 14px;
+            height: 14px;
+            background-color: red;
+            display: inline-block;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+    }
+    
+}
+::ng-deep #chart {
+    height: 340px;
+}

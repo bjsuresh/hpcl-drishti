@@ -1,0 +1,248 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+@import url('https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&display=swap');
+@import './theme/variables.scss';
+
+body {
+    font-family: 'Lato', sans-serif!important;
+}
+
+.form-field {
+    position: relative;
+    bottom: 0;
+    margin-bottom: 26px;
+    width: 100%;
+    ion-input {
+        border: 1px solid #ebebeb;
+        border-radius: 4px;
+        font-family: $my-primary-font!important;
+        font-weight: 500;
+        &.has-focus {
+            border: 1px solid $my-primary-color;
+            border-radius: 4px;
+        }
+        ion-icon {
+            font-size: 20px;
+            padding-left: 12px;
+            color: $my-secondary-color;
+        }
+        &.ng-invalid.ng-touched {
+            border: 1px solid $my-primary-error;
+        }
+        //margin-bottom: 26px;
+    }
+    ion-select {
+        border: 1px solid #ebebeb;
+        padding: 10px;
+        border-radius: 4px;
+        font-family: "Lato", sans-serif !important;
+        font-weight: 500;
+        &:hover {
+            border: 1px solid $my-primary-color;
+            border-radius: 4px;
+        }
+        &.ng-invalid.ng-touched {
+            border: 1px solid $my-primary-error;
+        }
+    }
+    
+    .my-inp-error {
+        color: $my-primary-error;
+        font-size: 12px;
+        position: absolute;    
+        bottom: -20px;
+        padding-left: 10px;
+    }
+    ion-datetime {
+        border: 1px solid #ebebeb;
+        border-radius: 4px;
+        font-family: $my-primary-font!important;
+        font-weight: 500;
+        &:hover {
+            border: 1px solid $my-primary-color;
+            border-radius: 4px;
+        }
+        &.ng-invalid.ng-touched {
+            border: 1px solid $my-primary-error;
+        }
+    }
+}
+
+.multi-field {
+    display: flex;
+}
+
+.my-checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    ion-checkbox {
+        margin-right: 12px;
+    }
+}
+
+.popup-title {
+    color: #223598;
+    font-family: "Lato", sans-serif;
+    font-size: 21px;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+
+// .modal-wrapper {
+//     max-height: 23%!important;
+//     margin: 5%;
+//     border-radius: 9px!important;
+// }
+
+.addpagemodal .modal-wrapper {
+    max-height: 28%!important;
+    margin: 5%;
+    border-radius: 9px!important;
+}
+
+.addsetingurlmodal .modal-wrapper {
+    max-height: 23%!important;
+    margin: 5%;
+    border-radius: 9px!important;
+}
+
+ion-toolbar {
+    --background: var(--ion-color-primary);
+    --color: white;
+    --border-color: black;
+    ion-title {
+        text-transform: capitalize;
+        font-weight: bold;
+    }
+}
+
+.chartmenu {
+    .popover-content {
+        max-width: 200px;
+    }
+}
+
+//side nav header desgin
+.header-sidenav {
+    display: flex;
+    padding: 35px 12px;
+    justify-content: center;
+    border-bottom: 1px solid #8080802e;
+    .details {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-left: 16px;
+        .name {
+            margin-bottom: 7px;
+            font-size: 19px;
+        }
+        .email {
+            font-size: 13px;
+            color: #060606c9;
+        }
+    }
+}
+
+.dx-treeview-node-container {
+    font-size: 18px;
+}
+
+
+.dx-treeview .dx-empty-message {
+    font-size: 16px;
+    padding: 12px;
+}
+
+.dx-icon {
+    width: 18px;
+    height: 18px;
+    background-position: 0 0;
+    background-size: 18px 18px;
+    padding: 0;
+    font-size: 18px;
+    text-align: center;
+    line-height: 18px
+}
+
+.page-temp-wrapper {
+    display: flex;
+    .page-temp {
+        display: flex;
+        justify-content: space-between;
+        font-size: 17px;
+        text-transform: capitalize;
+        width: 100%;
+        font-weight: 600;
+        color: $my-primary-color;
+        overflow: hidden;
+        .page-txt {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .icon-grp {
+            display: flex;
+        }
+        .page-icons {
+            padding: 0 12px;
+        }
+        .currentColor {
+            color: #223598;
+        }
+    }
+}
+
+.sc-ion-alert-md-h {
+    --min-width: 90%;
+}
+
+.alert-wrapper {
+    --min-width: 90%;
+}
+
+.tag-select .alert-radio-label.sc-ion-alert-md {
+    font-size: 12px!important;
+}
+
+.tag-multiple-select  .alert-checkbox-label.sc-ion-alert-md {
+    font-size: 13px;
+}
+
+.outline-primary-btn {
+    --background: none;
+    --color: black;
+    border-radius: 5px;
+    border: 2px solid $my-primary-color;
+
+}
+
+// ion-select {
+//     max-width: 70% !important;
+// }

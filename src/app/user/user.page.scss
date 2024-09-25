@@ -1,0 +1,14 @@
+ion-content {
+    --background: #f5f7f9;
+    ion-list {
+        background: #f5f7f9;
+        ion-card {
+            border-radius: 13px;
+            margin: 17px;
+        }
+    }
+}
+.ripple-parent {
+    position: relative;
+    overflow: hidden;
+  }

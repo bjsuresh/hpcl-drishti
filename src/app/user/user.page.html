@@ -1,0 +1,198 @@
+<!-- <ion-app>
+  <ion-nav root="app-user"></ion-nav>
+</ion-app> -->
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list>
+    <ion-card class="ion-activatable ripple-parent">
+      <ion-item-sliding>
+        <ion-item>
+          <ion-avatar slot="start">
+            <img src="../../assets/avatar.png">
+            <ion-ripple-effect></ion-ripple-effect>
+          </ion-avatar>
+          <ion-label>
+            <h2>Kumar</h2>
+            <h3>9597818840</h3>
+            <p>IMEI: 990000862471854</p>
+          </ion-label>
+          <ion-ripple-effect></ion-ripple-effect>
+        </ion-item>
+        <ion-item-options>
+          <ion-item-option>
+            <ion-icon slot="top" name="trash-outline"></ion-icon>
+            Delete
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+
+    </ion-card>
+    <ion-card class="ion-activatable ripple-parent">
+      <ion-item-sliding>
+        <ion-item>
+          <ion-avatar slot="start">
+            <img src="../../assets/avatar.png">
+            <ion-ripple-effect></ion-ripple-effect>
+          </ion-avatar>
+          <ion-label>
+            <h2>Kumar</h2>
+            <h3>9597818840</h3>
+            <p>IMEI: 990000862471854</p>
+          </ion-label>
+          <ion-ripple-effect></ion-ripple-effect>
+        </ion-item>
+        <ion-item-options>
+          <ion-item-option>
+            <ion-icon slot="top" name="trash-outline"></ion-icon>
+            Delete
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+
+    </ion-card>
+    <ion-card class="ion-activatable ripple-parent">
+      <ion-item-sliding>
+        <ion-item>
+          <ion-avatar slot="start">
+            <img src="../../assets/avatar.png">
+            <ion-ripple-effect></ion-ripple-effect>
+          </ion-avatar>
+          <ion-label>
+            <h2>Kumar</h2>
+            <h3>9597818840</h3>
+            <p>IMEI: 990000862471854</p>
+          </ion-label>
+          <ion-ripple-effect></ion-ripple-effect>
+        </ion-item>
+        <ion-item-options>
+          <ion-item-option>
+            <ion-icon slot="top" name="trash-outline"></ion-icon>
+            Delete
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+
+    </ion-card>
+    <ion-card class="ion-activatable ripple-parent">
+      <ion-item-sliding>
+        <ion-item>
+          <ion-avatar slot="start">
+            <img src="../../assets/avatar.png">
+            <ion-ripple-effect></ion-ripple-effect>
+          </ion-avatar>
+          <ion-label>
+            <h2>Kumar</h2>
+            <h3>9597818840</h3>
+            <p>IMEI: 990000862471854</p>
+          </ion-label>
+          <ion-ripple-effect></ion-ripple-effect>
+        </ion-item>
+        <ion-item-options>
+          <ion-item-option>
+            <ion-icon slot="top" name="trash-outline"></ion-icon>
+            Delete
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+
+    </ion-card>
+    <ion-card class="ion-activatable ripple-parent">
+      <ion-item-sliding>
+        <ion-item>
+          <ion-avatar slot="start">
+            <img src="../../assets/avatar.png">
+            <ion-ripple-effect></ion-ripple-effect>
+          </ion-avatar>
+          <ion-label>
+            <h2>Kumar</h2>
+            <h3>9597818840</h3>
+            <p>IMEI: 990000862471854</p>
+          </ion-label>
+          <ion-ripple-effect></ion-ripple-effect>
+        </ion-item>
+        <ion-item-options>
+          <ion-item-option>
+            <ion-icon slot="top" name="trash-outline"></ion-icon>
+            Delete
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+
+    </ion-card>
+    <ion-card class="ion-activatable ripple-parent">
+      <ion-item-sliding>
+        <ion-item>
+          <ion-avatar slot="start">
+            <img src="../../assets/avatar.png">
+            <ion-ripple-effect></ion-ripple-effect>
+          </ion-avatar>
+          <ion-label>
+            <h2>Kumar</h2>
+            <h3>9597818840</h3>
+            <p>IMEI: 990000862471854</p>
+          </ion-label>
+          <ion-ripple-effect></ion-ripple-effect>
+        </ion-item>
+        <ion-item-options>
+          <ion-item-option>
+            <ion-icon slot="top" name="trash-outline"></ion-icon>
+            Delete
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+
+    </ion-card>
+    <ion-card class="ion-activatable ripple-parent">
+      <ion-item-sliding>
+        <ion-item>
+          <ion-avatar slot="start">
+            <img src="../../assets/avatar.png">
+            <ion-ripple-effect></ion-ripple-effect>
+          </ion-avatar>
+          <ion-label>
+            <h2>Kumar</h2>
+            <h3>9597818840</h3>
+            <p>IMEI: 990000862471854</p>
+          </ion-label>
+          <ion-ripple-effect></ion-ripple-effect>
+        </ion-item>
+        <ion-item-options>
+          <ion-item-option>
+            <ion-icon slot="top" name="trash-outline"></ion-icon>
+            Delete
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+
+    </ion-card>
+  </ion-list>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab> 
+  <!-- <dx-chart id="chart" [dataSource]="dataSource" title="Mill Outlet Temperature">
+    <dxi-series argumentField="day" valueField="oranges" type="spline" name="10HBK10CP101"></dxi-series>
+    <dxo-legend verticalAlignment="top" horizontalAlignment="center">
+    </dxo-legend>
+    <dxo-tooltip [enabled]="true" [shared]="true">
+    </dxo-tooltip>
+    <dxi-value-axis name="value" position="left">
+      <dxo-grid [visible]="true"></dxo-grid>
+      <dxo-title [text]="Temperature"></dxo-title>
+    </dxi-value-axis>
+    <dxo-argument-axis [title]="Time">
+    </dxo-argument-axis>
+    <dxo-export [enabled]="true"></dxo-export>
+    <dxo-animation easing="linear" [duration]="500" [maxPointCountSupported]="100"> </dxo-animation>
+  </dx-chart>
+  <h3>Mill Outlet Temperature</h3>
+  <dx-data-grid id="gridContainer" [dataSource]="tableData" [columns]="['Tagname', 'Value', 'Timestamp', 'Description']"
+    [showBorders]="true">
+    <dxo-group-panel [visible]="true"></dxo-group-panel>
+    <dxo-export [enabled]="true"></dxo-export>
+  </dx-data-grid> -->
+</ion-content>

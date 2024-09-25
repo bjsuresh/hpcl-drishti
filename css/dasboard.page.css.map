@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,KAAK,CAAC;EACF,MAAM,EAAE,IAAI;CACf",
+    "sources": [
+        "../src/app/dasboard/dasboard.page.scss"
+    ],
+    "names": [],
+    "file": "dasboard.page.css"
+}

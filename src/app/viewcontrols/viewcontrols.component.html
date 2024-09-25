@@ -1,0 +1,224 @@
+<div id="viewcontrol">
+  <ion-header translucent>
+    <ion-toolbar>
+      <ion-buttons slot="start" (click)="dismissModal()">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-title>{{controlProperties.pagename}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content fullscreen class="ion-padding">
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <ng-container *ngIf="controlProperties?.pageproperties?.length == 0">
+      <div class="nodata_wrapper">
+        <img src="assets/nodata.svg" class="nodata_img">
+        <span>NO DATA FOUND</span>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="controlProperties?.pageproperties?.length != 0">
+      <div class="item" *ngFor="let data of controlProperties.pageproperties; let i = index">
+        <ng-container *ngIf="data.type == 'grid'">
+          <h1 class="table-tlt">{{data.data.title}}</h1>
+          <dx-data-grid id="gridContainer" [dataSource]="data.dataSource" [columns]="data.data.displayfields"
+            [showBorders]="true" [columnAutoWidth]="true">
+            <dxo-group-panel [visible]="false"></dxo-group-panel>
+            <dxo-paging [pageSize]="10"></dxo-paging>
+            <!-- <ng-container *ngIf="role == 'A' || role == 'P'">
+              <dxo-export [enabled]="true"></dxo-export>
+            </ng-container> -->
+            <dxo-scrolling columnRenderingMode="virtual"></dxo-scrolling>
+            <dxo-load-panel [enabled]="false"></dxo-load-panel>
+          </dx-data-grid>
+          <div class="btn-icos">
+            <ion-button (click)="openModalControl(data)">
+              <ion-icon name="scan-outline"></ion-icon>
+            </ion-button>
+          </div>
+          <!-- <div class="btn">
+            <ion-button size="small"  (click)="openModalControl(data)">View
+            </ion-button>
+          </div> -->
+        </ng-container>
+        <!--Circular Gauge-->
+        <ng-container *ngIf="data.type == 'circulargauge'">
+          <dx-circular-gauge id="circulargauge" [value]="data['gaugeVaue']" (onExporting)="onExporting($event)"
+            (onExported)="onExported($event)" (onFileSaving)="onFileSaving($event)">
+            <dxo-value-indicator type="textCloud" color="#483D8B">
+            </dxo-value-indicator>
+            <dxo-scale [startValue]="data.data?data.data.rangeFormValue1:'1'"
+              [endValue]="data.data?data.data.rangeToValue3:'200'" [tickInterval]="getFloatValue(data.data.rangeToValue3/12)"
+              [minorTickInterval]="getFloatValue(data.data.rangeToValue3/12)">
+              <dxo-label [useRangeColors]="true"></dxo-label>
+            </dxo-scale>
+            <dxo-range-container palette="pastel">
+              <dxi-range [startValue]="data.data.rangeFormValue1" [endValue]="data.data.rangeToValue1"
+                [color]="data.data.rangeColor1"></dxi-range>
+              <dxi-range [startValue]="data.data.rangeFormValue2" [endValue]="data.data.rangeToValue2"
+                [color]="data.data.rangeColor2"></dxi-range>
+              <dxi-range [startValue]="data.data.rangeFormValue3" [endValue]="data.data.rangeToValue3"
+                [color]="data.data.rangeColor3"></dxi-range>
+            </dxo-range-container>
+            <!-- <ng-container *ngIf="role == 'A' || role == 'P'">
+              <dxo-export [enabled]="true"></dxo-export>
+            </ng-container> -->
+            <dxo-title [text]="data.data?data.data.title:'Title'">
+              <dxo-font [size]="25" [weight]="500"></dxo-font>
+            </dxo-title>
+          </dx-circular-gauge>
+          <div class="btn-icos">
+            <ion-button (click)="openModalControl(data)">
+              <ion-icon name="scan-outline"></ion-icon>
+            </ion-button>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="data.type == 'lineargauge'">
+          <dx-linear-gauge id="lineargauge" [value]="data['gaugeVaue']">
+            <dxo-value-indicator type="textCloud" color="#734F96">
+            </dxo-value-indicator>
+            <dxo-range-container>
+              <dxi-range [startValue]="data.data.rangeFormValue1" [endValue]="data.data.rangeToValue1"
+                [color]="data.data.rangeColor1"></dxi-range>
+              <dxi-range [startValue]="data.data.rangeFormValue2" [endValue]="data.data.rangeToValue2"
+                [color]="data.data.rangeColor2"></dxi-range>
+              <dxi-range [startValue]="data.data.rangeFormValue3" [endValue]="data.data.rangeToValue3"
+                [color]="data.data.rangeColor3"></dxi-range>
+            </dxo-range-container>
+            <dxo-scale [startValue]="data.data?data.data.rangeFormValue1:'1'"
+              [endValue]="data.data?data.data.rangeToValue3:'500'" [tickInterval]="getFloatValue(data.data.rangeToValue3/6)"
+              [minorTickInterval]="getFloatValue(data.data.rangeToValue3/6)">
+              <dxo-minor-tick [visible]="true"></dxo-minor-tick>
+            </dxo-scale>
+            <!-- <ng-container *ngIf="role == 'A' || role == 'P'">
+              <dxo-export [enabled]="true"></dxo-export>
+            </ng-container> -->
+            <dxo-title [text]="data.data?data.data.title:'Title'">
+              <dxo-font [size]="25" [weight]="500"></dxo-font>
+            </dxo-title>
+            <dxo-animation easing="linear" [duration]="500">
+            </dxo-animation>
+          </dx-linear-gauge>
+          <div class="btn-icos">
+            <ion-button (click)="openModalControl(data)">
+              <ion-icon name="scan-outline"></ion-icon>
+            </ion-button>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="data.type == 'bargauge'">
+          <dx-bar-gauge id="gauge" [startValue]="data.data?data.data.startvalue:'1'"
+            [endValue]="data.data?data.data.endvalue:'100'" [values]="data['dataSource']">
+            <dxo-label [indent]="30">
+              <dxo-format type="fixedPoint" [precision]="1"></dxo-format>
+            </dxo-label>
+            <!-- <ng-container *ngIf="role == 'A' || role == 'P'">
+              <dxo-export [enabled]="true"></dxo-export>
+            </ng-container> -->
+            <dxo-title [text]="data.data?data.data.title:'Title'">
+              <dxo-font [size]="25" [weight]="500"></dxo-font>
+            </dxo-title>
+            <dxo-tooltip [enabled]="true" [customizeTooltip]="customizeTooltip"></dxo-tooltip>
+            <dxo-animation easing="linear" [duration]="500">
+            </dxo-animation>
+            <!-- <dxo-legend  [visible]="true" verticalAlignment="bottom" horizontalAlignment="center">
+            </dxo-legend> -->
+          </dx-bar-gauge>
+          <div class="btn-icos">
+            <ion-button (click)="openModalControl(data)">
+              <ion-icon name="scan-outline"></ion-icon>
+            </ion-button>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="data.type == 'chart'">
+          <ng-container *ngIf="data.data">
+            <dx-chart id="chart" [dataSource]="data.dataSource">
+              <dxi-series *ngFor="let tags of data['data']['tags']" argumentField="datetime" [valueField]="tags"
+                [type]="data.data.chartType" [name]="tags">
+                <dxo-aggregation [enabled]="true"></dxo-aggregation>
+                <dxo-point [visible]="data['data']['pointFlag']"></dxo-point>
+              </dxi-series>
+              <dxo-zoom-and-pan argumentAxis="both" valueAxis="both" *ngIf="data.zoom">
+                <!-- or "zoom" | "pan" | "none" -->
+              </dxo-zoom-and-pan>
+              <dxo-legend verticalAlignment="top" horizontalAlignment="center" [rowCount]="2" [columnItemSpacing]="10" [columnCount]="1"
+              [rowItemSpacing]="0">
+              </dxo-legend>
+              <dxo-title [text]="data.data?data.data.title:'Title'">
+                <dxo-font [size]="25" [weight]="500"></dxo-font>
+              </dxo-title>
+              <dxo-tooltip [enabled]="true" [shared]="true">
+              </dxo-tooltip>
+              <dxi-value-axis name="value" position="left" valueType="numeric">
+                <dxo-grid [visible]="data['data']['gridFlag']"></dxo-grid>
+                <dxo-title [text]="data.data?data.data.valueAxis:'Value'"></dxo-title>
+              </dxi-value-axis>
+              <dxo-argument-axis [title]="data.data?data.data.arugumentAxis:'Argument'" [valueMarginsEnabled]="false">
+                <dxo-grid [visible]="data['data']['gridFlag']"></dxo-grid>
+                <dxo-label format="shortTime"></dxo-label>
+              </dxo-argument-axis>
+              <dxo-common-series-settings argumentField="Time">
+                <dxo-grid [visible]="data['data']['gridFlag']"></dxo-grid>
+              </dxo-common-series-settings>
+              <dxo-crosshair [enabled]="true">
+                <dxo-label [visible]="true"></dxo-label>
+              </dxo-crosshair>
+              <!-- <ng-container *ngIf="role == 'A' || role == 'P'">
+                <dxo-export [enabled]="true"></dxo-export>
+              </ng-container> -->
+              <dxo-animation easing="linear" [duration]="500" [maxPointCountSupported]="100"> </dxo-animation>
+            </dx-chart>
+            <ng-container *ngIf="data">
+              <div class="message" *ngIf="data['dataSource'].length == 0 && data.data['processFor'] == 'realtime'">
+                <h5>No Tag Values in Realtime</h5>
+              </div>
+              <div class="message" *ngIf="data['dataSource'].length == 0 && data.data['processFor'] == 'query'">
+                <h5>No data to display</h5>
+              </div>
+            </ng-container>
+            <div class="btn-icos">
+              <ng-container *ngIf="data.data.processFor != 'query'">
+                <!-- <ion-button size="small"  (click)="pause(data)" [disabled]="data.zoom">Pause
+                </ion-button>
+                <ion-button size="small"  (click)="play(data)" [disabled]="!data.zoom">Play
+                </ion-button> -->
+                <ion-button [disabled]="!data.zoom" (click)="play(data)">
+                  <ion-icon name="play-outline"></ion-icon>
+                </ion-button>
+                <ion-button [disabled]="data.zoom" (click)="pause(data)">
+                  <ion-icon name="pause-outline"></ion-icon>
+                </ion-button>
+              </ng-container>
+              <ion-button (click)="openModalControl(data)">
+                <ion-icon name="scan-outline"></ion-icon>
+              </ion-button>
+            </div>
+          </ng-container>
+        </ng-container>
+        <ng-container *ngIf="data.type == 'indicator'">
+          <h1 class="table-tlt">{{data.data.title}}</h1>
+          <dx-data-grid id="gridContainer" [dataSource]="data.dataSource" [columns]="indicatorfields"
+            [showBorders]="true" [columnAutoWidth]="true">
+            <dxi-column dataField="Alias Name"></dxi-column>
+            <dxi-column dataField="Tag Name"></dxi-column>
+            <dxi-column dataField="Condition" cellTemplate="cellTemplate"></dxi-column>
+            <div *dxTemplate="let data of 'cellTemplate'" class="light-indicator-wrapper">
+              <span class="light-indicator" *ngIf="data.data.Condition"
+                [ngStyle]="{'background-color': data.data.Condition}"></span>
+              <span class="light-indicator" *ngIf="!data.data.Condition"
+                [ngStyle]="{'background-color': 'black'}"></span>
+            </div>
+            <dxo-group-panel [visible]="false"></dxo-group-panel>
+            <dxo-paging [pageSize]="10"></dxo-paging>
+            <dxo-scrolling columnRenderingMode="virtual"></dxo-scrolling>
+            <dxo-load-panel [enabled]="false"></dxo-load-panel>
+          </dx-data-grid>
+          <div class="btn-icos">
+            <ion-button (click)="openModalControl(data)">
+              <ion-icon name="scan-outline"></ion-icon>
+            </ion-button>
+          </div>
+        </ng-container>
+      </div>
+    </ng-container>
+  </ion-content>
+</div>

@@ -1,0 +1,42 @@
+.item {
+    padding: 10px 10px;
+    // border-bottom: 1px solid #80808063;
+    .btn-icos {
+        margin-top: 12px;
+        text-align: center;
+        ion-icon  {
+            font-size: 23px;
+            color: #fff;
+        }
+    }
+}
+
+.play-pause {
+    display: flex;
+    justify-content: center;
+    margin-top: 17px;
+}
+.table-tlt {
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.nodata_wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    .nodata_img {
+        width: 124px;
+    }
+    span {
+        margin-top: 16px;
+        color: #76777bf7;
+        font-weight: bold;
+    }
+}
+
+

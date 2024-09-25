@@ -1,0 +1,67 @@
+@import '../../theme/variables';
+
+#login {
+    padding: 0px 20px;
+    height: 100%;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    .wrapper {
+        width: 100%;
+        .details {
+            display: flex;
+            flex-direction: column;
+            // align-items: center;
+            margin-bottom: 30px;
+            text-align: center;
+            .logo {
+                // width: 82px;
+            }
+            .logoname {
+                font-family: $my-primary-font;
+                font-weight: 800;
+                font-size: 20px;
+                text-transform: capitalize;
+                margin: 0;
+            }
+    }
+    .login-wrapper {
+        width: 100%;
+        .logo {
+            width: 82px;
+        }
+        .rem-pass {
+            margin-top: 40px;
+            @include primary-fonts(14px);
+            display: flex;
+            justify-content: space-between;
+            .forgot-pass {
+                text-transform: uppercase;
+                color: $my-secondary-color;
+            } 
+        }
+        .btn {
+            margin-top: 30px;
+        }
+        .icon-set {
+            margin-top: 30px;
+            text-align: center;
+            ion-icon {
+                font-size: 32px;
+                background-color: #223598;
+                padding: 5px;
+                color: whitesmoke;
+                border-radius: 8px;
+            }
+        }
+    }
+    }
+    .bottom-icons {
+        position: absolute;
+        bottom: 0;
+        display: flex;
+        justify-content: space-between;
+        left: 0;
+        width: 100%;
+    }
+}

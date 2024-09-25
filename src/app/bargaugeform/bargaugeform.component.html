@@ -1,0 +1,40 @@
+<div id="bargaugeform">
+  <ion-content fullscreen>
+  <div class="background">
+  </div>
+  <div class="heading">
+    <span>BarGauge Properties</span>
+    <span class="close" (click)="dismissModal()">Close</span>
+    <!-- <ion-icon name="close-circle-outline"></ion-icon> -->
+  </div>
+  <div class="form" [formGroup]="controlForm">
+    <div class="form-field">
+      <ion-input placeholder="Title" type="text" formControlName="title">
+      </ion-input>
+      <div class="my-inp-error" *ngIf="controlForm.get('title').hasError('required') && controlForm.get('title').touched"><ion-icon name="alert-circle-outline"></ion-icon> Title is required</div>
+    </div>
+   
+    <div class="form-field">
+      <ion-input placeholder="StartValue" type="number" formControlName="startvalue">
+      </ion-input>
+      <div class="my-inp-error" *ngIf="controlForm.get('startvalue').hasError('required') && controlForm.get('startvalue').touched"><ion-icon name="alert-circle-outline"></ion-icon> StartValue is required</div>
+    </div>  
+    
+    <div class="form-field">
+      <ion-input placeholder="EndValue" type="number" formControlName="endvalue">
+      </ion-input>
+      <div class="my-inp-error" *ngIf="controlForm.get('endvalue').hasError('required') && controlForm.get('endvalue').touched"><ion-icon name="alert-circle-outline"></ion-icon> EndValue is required</div>
+    </div> 
+
+
+    <div class="form-field">
+      <ion-select placeholder="Tags" formControlName="tags" cancelText="Cancel" okText="OK" [disabled]="tagsData.length == 0" [interfaceOptions]="customAlertOptions">
+        <ion-select-option *ngFor="let tag of tagsData" [value]="tag['TagName']">{{tag['TagName']}}</ion-select-option>
+      </ion-select>
+      <a class="add-tags" (click)="addTags()">+ Add Tags</a>
+    </div>
+    <ion-button expand="block" *ngIf="!data" (click)="controlFormSubmit()">Submit</ion-button>
+    <ion-button expand="block" *ngIf="data" (click)="controlFormSubmit()">Update</ion-button>
+  </div>
+</ion-content>
+</div>

@@ -1,0 +1,33 @@
+#single-view-control {
+    .table-tlt {
+        text-align: center;
+        font-size: 25px;
+        text-transform: capitalize;
+        font-weight: 500;
+    }  
+    .item {
+        padding-bottom: 30px;
+        margin-top: 20px;
+        border-bottom: 1px solid #80808063;
+        .btn-icos {
+            margin-top: 12px;
+            text-align: center;
+            ion-icon  {
+                font-size: 23px;
+                color: #fff;
+            }
+        }
+    }
+    .back-icon {
+        font-size: 26px;
+        color: #223598;
+    }
+}
+.message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: red;
+    border-radius: 10px;
+    color: #fff;
+}

@@ -1,0 +1,70 @@
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <!-- <ion-list>
+    <ng-container *ngFor="let page of pageData">
+      <ion-item class="level1">
+        <ion-icon name="folder-outline" slot="start"></ion-icon>
+        <ion-label>{{page.Plantname}}</ion-label>
+      </ion-item>
+      <ng-container *ngFor="let page1 of page.child">
+        <ng-container *ngIf="page1.type == 'page'; else area_content">
+          <ion-item button class="level2" (click)="openControls(page1)">
+            <ion-icon name="newspaper-outline" slot="start"></ion-icon>
+            <ion-label>{{page1.pageNames}}</ion-label>
+          </ion-item>
+        </ng-container>
+        <ng-template #area_content>
+          <ion-item class="level2">
+            <ion-icon name="folder-outline" slot="start"></ion-icon>
+            <ion-label>{{page1.AreaName}}</ion-label>
+          </ion-item>
+          <ng-container *ngFor="let page2 of page1.child">
+            <ion-item button class="level3" (click)="openControls(page2)">
+              <ion-icon name="newspaper-outline" slot="start"></ion-icon>
+              <ion-label>{{page2.pageNames}}</ion-label>
+            </ion-item>
+          </ng-container>
+        </ng-template>
+      </ng-container>
+    </ng-container>
+  </ion-list> -->
+
+  
+  <ion-segment (ionChange)="segmentChanged($event)" value="hierarchical_type">
+    <ion-segment-button value="hierarchical_type">
+      <ion-label>
+        Hierarchical
+      </ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="list_type">
+      <ion-label>
+        List Pages
+      </ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ng-container *ngIf="segment === 'hierarchical_type'">
+    <div class="wrapper-treeview">
+      <dx-tree-view
+      id="simple-treeview"
+      [items]="treeData" dataStructure="plain" parentIdExpr="parentUuid" keyExpr="uuid" displayExpr="text" (onItemClick)="selectPageItem($event)" [searchEnabled]="true" searchMode="contains"> </dx-tree-view>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="segment === 'list_type'">
+    <div class="list-container wrapper-treeview">
+      <dx-list
+        #list
+        [dataSource]="pageList"
+        [searchEnabled]="true"
+        searchExpr="text"
+        searchMode="contains"
+        (onItemClick)="selectPageItem($event)"
+      >
+        <div *dxTemplate="let data of 'item'" >{{ data.text }}</div>
+      </dx-list>
+    </div>
+  </ng-container>
+</ion-content>

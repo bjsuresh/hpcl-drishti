@@ -1,0 +1,51 @@
+<ion-header translucent class="settingspage">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <div class="header-items">
+      <ng-container>
+        <ion-title>Settings</ion-title>
+      </ng-container>
+    </div>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen class="ion-padding">
+  <form #f="ngForm">
+    <div class="form-wrapper">
+      <div class="form-field change-bottom">
+        <ion-label class="setting-label">No of decimal should display</ion-label>
+        <ion-input placeholder="Decimal Point" type="number" [(ngModel)]="noOfDecimal" name="noOfDecimal">
+        </ion-input>
+      </div>
+      <div class="form-field change-bottom">
+        <ion-label class="setting-label">No of Tags should configure in form</ion-label>
+        <ion-input placeholder="Tags Number" type="number" [(ngModel)]="tagsNumber" name="tagsNumber">
+        </ion-input>
+      </div>
+      <div class="form-field">
+        <ion-label class="setting-label">Time format should display</ion-label>
+        <ion-select placeholder="Time format" [(ngModel)]="timeFormat" name="timeFormat">
+          <ion-select-option value="YYYY/MM/DD HH:mm">Minutes</ion-select-option>
+          <ion-select-option value="YYYY/MM/DD HH:mm:ss">Seconds</ion-select-option>
+          <ion-select-option value="YYYY/MM/DD HH:mm:ss:SSS">Millseconds</ion-select-option>
+        </ion-select>
+      </div>
+      <!-- <div class="form-field">
+        <ion-label class="setting-label">Graphics Url</ion-label>
+        <ion-input placeholder="http://000.000.000.00:00000" type="text" [(ngModel)]="graphicsUrl" name="graphicsUrl">
+          <ion-icon name="link-outline" color="secondary"></ion-icon>
+        </ion-input>
+      </div> -->
+      <div class="form-field">
+        <ion-item>
+          <!-- <ion-checkbox >Auto Login</ion-checkbox> -->
+          <ion-checkbox (ionChange)="checkboxClick($event)" name="auto_log" [(ngModel)]="auto_log"></ion-checkbox>
+          <ion-label class="setting-label">Auto Login</ion-label>
+        </ion-item>
+      </div>
+      
+      <ion-button expand="block" (click)="save()">Save</ion-button>
+    </div>
+  </form>
+</ion-content>

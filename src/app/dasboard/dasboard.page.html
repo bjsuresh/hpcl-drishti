@@ -1,0 +1,111 @@
+<!-- <ion-app>
+  <ion-menu side="start" menuId="first" contentId="main">
+    <ion-header>
+      <ion-toolbar color="primary" (click)="setHeader('pages')">
+        <ion-title routerLink="pages">SAMA MP</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-searchbar></ion-searchbar>
+      <ion-list>
+        <ion-item *ngFor="let data of pageData" (click)="selectMenu(data)">          
+           <ion-icon name="document-outline" slot="start"></ion-icon> 
+          <ion-label>{{data.pagename | titlecase}}</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <div class="ion-page" id="main">
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>{{header | titlecase}}</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-router-outlet></ion-router-outlet>
+    </ion-content>
+  </div>
+</ion-app> -->
+<ion-app>
+  <ion-menu side="start" menuId="first" contentId="main">
+    <ion-content>
+      <div class="header-sidenav">
+        <ion-avatar>
+          <img src="../../assets/avatar.png">
+        </ion-avatar>
+        <div class="details">
+          <span class="name">{{userName | titlecase}}</span>
+          <span class="email">{{imei}}</span>
+        </div>
+      </div>
+      <ion-list>
+        <ion-item (click)="navigateUrl()">
+          <!-- <ion-icon name="settings-outline" slot="start"></ion-icon> -->
+          <ion-icon name="key-outline" slot="start"></ion-icon>
+          <ion-label>Change Password</ion-label>
+        </ion-item>
+        <ion-item (click)="navToSettings()">
+          <!-- <ion-icon name="settings-outline" slot="start"></ion-icon> -->
+          <ion-icon name="settings-outline" slot="start"></ion-icon>
+          <ion-label>Settings</ion-label>
+        </ion-item>
+        <ion-item (click)="logout()">
+          <ion-icon name="log-out-outline" slot="start"></ion-icon>
+          <ion-label>Logout</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <div class="ion-page" id="main">
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>{{header | titlecase}}</ion-title>
+        <ng-container *ngIf="session_tooltip != 'true'">
+          <ion-buttons slot="end">
+            <div class="session">
+              <span class="text">Session Expired in</span>
+              <h5>{{Expiry_time}}</h5>
+            </div>
+          </ion-buttons>
+        </ng-container>
+      </ion-toolbar>
+      <!-- <ion-toolbar>
+        <ion-searchbar></ion-searchbar>
+      </ion-toolbar> -->
+    </ion-header>
+    <ion-content>
+      <ion-tabs (ionTabsDidChange)="ionTabsDidChange($event)">
+        <ion-tab-bar slot="bottom">
+          <ion-tab-button tab="query" *ngIf="licenseData?.Query_Licensed">
+            <ion-icon name="search-circle-outline"></ion-icon>
+            <ion-label>Query</ion-label>
+          </ion-tab-button>
+          <ion-tab-button tab="viewpages" *ngIf="licenseData?.Pages_Licensed">
+            <ion-icon name="document-outline"></ion-icon>
+            <ion-label>Pages</ion-label>
+          </ion-tab-button>
+          <ion-tab-button tab="viewgraphics" *ngIf="licenseData?.Graphics_Licensed">
+            <ion-icon name="bar-chart-outline"></ion-icon>
+            <ion-label>Graphics</ion-label>
+          </ion-tab-button>
+          <ion-tab-button tab="report" *ngIf="licenseData?.Reports_Licensed">
+            <ion-icon name="newspaper-outline"></ion-icon>
+            <ion-label>Reports</ion-label>
+          </ion-tab-button>
+          <ng-container *ngIf="role == 'A'">
+            <ion-tab-button tab="pages" *ngIf="licenseData?.Pages_Licensed">
+              <ion-icon name="document-text-outline"></ion-icon>              
+              <ion-label>Edit Pages</ion-label>
+            </ion-tab-button>
+          </ng-container>
+        </ion-tab-bar>
+      </ion-tabs>
+    </ion-content>
+  </div>
+</ion-app>

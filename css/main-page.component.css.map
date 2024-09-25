@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAGA,SAHS,CAGT,KAAK,CAAC;EACF,cAAc,EAAE,IAAI;EACpB,UAAU,EAAE,IAAI;EAKhB,aAAa,EAAE,mBAAmB;CACrC;;AAXD,AAMI,SANK,CAGT,KAAK,CAGD,IAAI,CAAC;EACD,UAAU,EAAE,IAAI;EAChB,UAAU,EAAE,MAAM;CACrB",
+    "sources": [
+        "../src/app/dasboard/main-page/main-page.component.scss"
+    ],
+    "names": [],
+    "file": "main-page.component.css"
+}

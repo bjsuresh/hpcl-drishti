@@ -1,0 +1,48 @@
+#addpage {
+  height: calc(100% - 56px);
+}
+
+#addpage ion-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#addpage ion-header .save-pd {
+  margin-right: 23px;
+}
+
+#addpage ion-header .header-items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#addpage .but-tool-icons {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#addpage ion-content .table-tlt {
+  text-align: center;
+}
+
+#addpage ion-content .item {
+  padding-bottom: 30px;
+  margin-top: 20px;
+  border-bottom: 1px solid #80808063;
+}
+
+#addpage ion-content .item .btn {
+  margin-top: 12px;
+  text-align: center;
+}
+
+::ng-deep #chart {
+  height: 340px;
+}
+/*# sourceMappingURL=addpage.component.css.map */

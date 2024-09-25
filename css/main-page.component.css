@@ -1,0 +1,11 @@
+#mainpage .item {
+  padding-bottom: 30px;
+  margin-top: 20px;
+  border-bottom: 1px solid #80808063;
+}
+
+#mainpage .item .btn {
+  margin-top: 12px;
+  text-align: center;
+}
+/*# sourceMappingURL=main-page.component.css.map */
